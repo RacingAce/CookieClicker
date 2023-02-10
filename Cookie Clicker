@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <style>
+      .container {
+        width: 500px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .cookie-counter {
+        font-size: 36px;
+        margin-top: 20px;
+      }
+      .shop {
+        margin-top: 20px;
+      }
+      .upgrade {
+        display: inline-block;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cookie Clicker</h1>
+      <div class="cookie-counter">Cookies: <span id="cookies">0</span></div>
+      <button id="cookie-button">Click the cookie</button>
+      <div class="shop">
+        <h2>Shop</h2>
+        <div class="upgrade">
+          <p>Autoclicker (cost: 100 cookies, multiplier: 2):</p>
+          <button id="autoclicker-button">Buy</button>
+        </div>
+        <div class="upgrade">
+          <p>Grandma (cost: 500 cookies, multiplier: 4):</p>
+          <button id="grandma-button">Buy</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const cookiesSpan = document.getElementById("cookies");
+      const cookieButton = document.getElementById("cookie-button");
+      const autoclickerButton = document.getElementById("autoclicker-button");
+      const grandmaButton = document.getElementById("grandma-button");
+      let cookies = 0;
+      let autoclicker = false;
+      let grandma = false;
+      cookieButton.addEventListener("click", function() {
+        cookies += 1 + (autoclicker ? 1 : 0) + (grandma ? 3 : 0);
+        cookiesSpan.innerHTML = cookies;
+      });
+      autoclickerButton.addEventListener("click", function() {
+        if (cookies >= 100) {
+          cookies -= 100;
+          autoclicker = true;
+          autoclickerButton.innerHTML = "Bought";
+          autoclickerButton.disabled = true;
+        }
+      });
+      grandmaButton.addEventListener("click", function() {
+        if (cookies >= 500) {
+          cookies -= 500;
+          grandma = true;
+          grandmaButton.innerHTML = "Bought";
+          grandmaButton.disabled = true;
+        }
+      });
+    </script>
+  </body>
+</html>
